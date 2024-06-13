@@ -10,4 +10,18 @@ tarefas.push(tarefa);
 res.redirect('/tarefas'); 
 } 
 
-module.exports = { getTarefas, addTarefa, };
+async function deleteTarefa(req, res){
+ 
+    let idTarefa=req.params.id;
+    let msg='';
+    if(await Tarefa.deleteTarefa(idTarefa)){
+        msg = 'Sucesso!';
+    }else{
+      msg = 'Falha!';
+    }
+    res.redirect('/tarefas');
+  
+  }
+  
+
+module.exports = { getTarefas, addTarefa, deleteTarefa};
